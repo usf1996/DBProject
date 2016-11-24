@@ -12,6 +12,12 @@
     <string name="appBarMain_toolbarText">Main Screen</string>
     <string name="nd_txt_user_name">Youssef El Khoury</string>
     <string name="nd_txt_user_mail">youssef.elkhoury01@lau.edu</string>
-    <string name="activityMainDrawer_movies">My Movies</string>
+
+    <!--Navigation drawer menu list-->
+    <string name="activityMainDrawer_myMovies">My Movies</string>
+    <string name="activityMainDrawer_mySeries">Series</string>
+    <string name="activityMainDrawer_more">More</string>
+    <string name="activityMainDrawer_Settings">Settings</string>
+    <string name="activityMainDrawer_share">Share App with Friends</string>
 
 </resources>

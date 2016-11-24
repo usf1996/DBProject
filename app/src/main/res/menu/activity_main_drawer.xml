@@ -5,23 +5,23 @@
         <item
             android:id="@+id/activityMainDrawer_movies"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/activityMainDrawer_movies" />
+            android:title="@string/activityMainDrawer_myMovies" />
         <item
             android:id="@+id/activityMainDrawer_series"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Series" />
+            android:title="@string/activityMainDrawer_mySeries" />
     </group>
 
-    <item android:title="More">
+    <item android:title="@string/activityMainDrawer_more">
         <menu>
             <item
                 android:id="@+id/activityMainDrawer_settings"
                 android:icon="@android:drawable/ic_menu_preferences"
-                android:title="Settings" />
+                android:title="@string/activityMainDrawer_Settings" />
             <item
                 android:id="@+id/activityMainDrawer_share"
                 android:icon="@android:drawable/ic_menu_share"
-                android:title="Share App with Friends" />
+                android:title="@string/activityMainDrawer_share" />
         </menu>
     </item>
 
