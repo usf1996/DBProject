@@ -28,7 +28,8 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     //This method is invoked by the layout manager
-    //Gets the view that the adapter must get data from and create a view holder to hold the data of the view
+    //Create the appropriate viewholder that will
+    // bind the data to the views from the dataset
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         RecyclerView.ViewHolder viewHolder;
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
@@ -52,7 +53,8 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @Override
     //This method is invoked by the layout manager
     //Gets element from your dataset at a position i
-    //Replaces the contents of the view with that element
+    //and choose the appropriate viewholder to replace
+    //the contents of the view with that element
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         switch (viewHolder.getItemViewType()) {
             case MOVIE:
@@ -66,6 +68,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
+    //set the data of the different views in the viewholder to the data of the dataset
     private void configureSeriesViewHolder(seriesViewHolder svh, int position) {
         Series series = (Series) obj.get(position);
         svh.getTitle().setText(series.getSeries_title());
@@ -74,6 +77,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         svh.getPhotoID().setImageResource(series.getSeries_photoID());
     }
 
+    //set the data of the different views in the viewholder to the data of the dataset
     private void configureMovieViewHolder(movieViewHolder mvh, int position) {
         Movie movie = (Movie) obj.get(position);
         mvh.getTitle().setText(movie.getMovie_title());
