@@ -5,4 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam"
-    android:id="@+id/cardView_description"/>
+    android:id="@+id/cardView_description"
+    android:ellipsize="end"
+    android:maxLines="4"
+    />

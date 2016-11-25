@@ -1,4 +1,4 @@
-package com.example.usf.dbproject1.Entities;
+package com.example.usf.dbproject.Entities;
 
 
 public class Series {

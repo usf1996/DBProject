@@ -1,23 +1,22 @@
-package com.example.usf.dbproject1.RecyclerView;
+package com.example.usf.dbproject.RecyclerView;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.usf.dbproject1.Entities.Movie;
-import com.example.usf.dbproject1.Entities.Series;
-import com.example.usf.dbproject1.R;
+import com.example.usf.dbproject.Entities.Movie;
+import com.example.usf.dbproject.Entities.Series;
+import com.example.usf.dbproject.R;
 
 import java.util.List;
 
-public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     private List<Object> obj;
     private final int MOVIE = 1, SERIES = 2;
 
-    public RVAdapter(List<Object> obj){
+    public RecyclerViewAdapter(List<Object> obj){
         this.obj = obj;
     }
 

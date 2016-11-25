@@ -1,4 +1,4 @@
-package com.example.usf.dbproject1.RecyclerView;
+package com.example.usf.dbproject.RecyclerView;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.usf.dbproject1.R;
+import com.example.usf.dbproject.R;
 
 //Create a reference to the views for each data item
 //where you hold the views of each data item

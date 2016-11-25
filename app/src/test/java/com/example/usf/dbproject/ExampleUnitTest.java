@@ -1,4 +1,4 @@
-package com.example.usf.dbproject1;
+package com.example.usf.dbproject;
 
 import org.junit.Test;
 
