@@ -3,26 +3,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/activityMainDrawer_movies"
+            android:id="@+id/activityMainDrawer_signout"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="My Movies" />
+            android:title="Sign Out" />
         <item
-            android:id="@+id/activityMainDrawer_series"
+            android:id="@+id/activityMainDrawer_settings"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="My Series" />
+            android:title="Settings" />
     </group>
-
-    <item android:title="More">
-        <menu>
-            <item
-                android:id="@+id/activityMainDrawer_settings"
-                android:icon="@android:drawable/ic_menu_preferences"
-                android:title="Settings" />
-            <item
-                android:id="@+id/activityMainDrawer_share"
-                android:icon="@android:drawable/ic_menu_share"
-                android:title="Share App with Friends" />
-        </menu>
-    </item>
 
 </menu>
