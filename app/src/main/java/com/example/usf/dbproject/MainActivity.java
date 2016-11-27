@@ -14,6 +14,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.usf.dbproject.Fragments.MovieFragment;
+import com.example.usf.dbproject.Fragments.ProfileFragment;
+import com.example.usf.dbproject.Fragments.SeriesFragment;
+
 /*import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,9 +26,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;*/
-import com.example.usf.dbproject.Fragments.MovieFragment;
-import com.example.usf.dbproject.Fragments.ProfileFragment;
-import com.example.usf.dbproject.Fragments.SeriesFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -111,11 +112,12 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.activityMain_navHeader);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Add the profile page as the default page on startup
-        ProfileFragment profileFragment = new ProfileFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().replace(R.id.contentMain_frameLayout, profileFragment).commit();
-        toolbar.setTitle("My Profile");
+        //Set profile screen as default screen on startup
+        ProfileFragment profileFragment1 = new ProfileFragment();
+        FragmentManager manager1 = getSupportFragmentManager();
+        manager1.beginTransaction().replace(R.id.contentMain_frameLayout, profileFragment1).commit();
+        Toolbar tb1 = (Toolbar) findViewById(R.id.appBarMain_toolbar);
+        tb1.setTitle("My Profile");
 
         //Defines what to do when the navigation header is pressed
         onNavHeaderPress();

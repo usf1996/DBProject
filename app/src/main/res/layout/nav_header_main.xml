@@ -21,13 +21,15 @@
         android:id="@+id/navHeaderMain_userImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        android:background="@drawable/profile_circular_border_imageview"
+        android:src="@mipmap/ic_launcher"
+        android:padding="15dp"
+        android:scaleType="centerCrop"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="16dp"
         android:text="Youssef El Khoury"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:id="@+id/navHeaderMain_userName"
