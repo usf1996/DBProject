@@ -1,7 +1,5 @@
 package com.example.usf.dbproject;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -17,9 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.usf.dbproject.Fragments.MovieFragment;
 import com.example.usf.dbproject.Fragments.ProfileFragment;
-import com.example.usf.dbproject.Fragments.SeriesFragment;
 
 /*import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -140,12 +136,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
+        getMenuInflater().inflate(R.menu.main_toolbar, menu);
         return true;
     }
 
@@ -156,25 +147,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //Go to movies page when the movies item is selected in the navigation drawer
-        if (id == R.id.activityMainDrawer_movies) {
-            MovieFragment movieFragment = new MovieFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction().replace(R.id.contentMain_frameLayout, movieFragment).commit();
-            Toolbar tb = (Toolbar) findViewById(R.id.appBarMain_toolbar);
-            tb.setTitle("Movies");
-        } else
-            //Go to movies page when the series item is selected in the navigation drawer
-            if (id == R.id.activityMainDrawer_series) {
-                SeriesFragment seriesFragment = new SeriesFragment();
-                FragmentManager manager = getSupportFragmentManager();
-                manager.beginTransaction().replace(R.id.contentMain_frameLayout, seriesFragment).commit();
-                Toolbar tb = (Toolbar) findViewById(R.id.appBarMain_toolbar);
-                tb.setTitle("Series");
-            } else if (id == R.id.activityMainDrawer_settings) {
+        if (id == R.id.activityMainDrawer_signout) {
 
-            } else if (id == R.id.activityMainDrawer_share) {
+        } else if (id == R.id.activityMainDrawer_settings) {
 
-            }
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activityMain_drawerLayout);
         drawer.closeDrawer(GravityCompat.START);
