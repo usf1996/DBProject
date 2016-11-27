@@ -1,4 +1,4 @@
-package com.example.usf.dbproject;
+package com.example.usf.dbproject.Login;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.usf.dbproject.MainActivity;
+import com.example.usf.dbproject.R;
 
 public class LoginActivity extends AppCompatActivity {
     @Override

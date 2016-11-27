@@ -1,4 +1,4 @@
-package com.example.usf.dbproject;
+package com.example.usf.dbproject.Login;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.usf.dbproject.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
