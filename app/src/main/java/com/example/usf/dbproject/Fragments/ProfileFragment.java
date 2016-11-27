@@ -25,12 +25,14 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        //Get the viewpager that will hold the different child fragments and setup the viewpager adapter
         final ViewPager viewPager = (ViewPager) rootView.findViewById(R.id.fragmentProfile_viewPager);
         setupViewPager(viewPager);
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.fragmentProfile_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        //Get the appropriate fragment when a tab is pressed
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -51,6 +53,7 @@ public class ProfileFragment extends Fragment {
         return rootView;
     }
 
+    //Add the different fragments to the viewpager adapter and give each tab a name
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFrag(new MovieFragment(), "My Movies");
