@@ -35,7 +35,7 @@
                 android:paddingBottom="30dp">
 
                 <ImageButton
-                    android:id="@+id/fragmentMovies_userImage"
+                    android:id="@+id/activityLogin_userImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@drawable/profile_circular_border_imageview"

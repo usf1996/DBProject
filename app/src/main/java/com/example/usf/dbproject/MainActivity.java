@@ -1,5 +1,6 @@
 package com.example.usf.dbproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -148,7 +149,8 @@ public class MainActivity extends AppCompatActivity
 
         //Go to movies page when the movies item is selected in the navigation drawer
         if (id == R.id.activityMainDrawer_signout) {
-
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         } else if (id == R.id.activityMainDrawer_settings) {
 
         }
