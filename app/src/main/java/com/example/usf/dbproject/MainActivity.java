@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -138,6 +140,26 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_toolbar, menu);
+
+        final MenuItem item = menu.findItem(R.id.mainToolbar_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+
+        final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return true;
+
+            }
+        };
+        searchView.setOnQueryTextListener(queryTextListener);
         return true;
     }
 
@@ -147,10 +169,10 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        //Go to movies page when the movies item is selected in the navigation drawer
-        if (id == R.id.activityMainDrawer_signout) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+        //Logout by going back to the login page
+        if (id == R.id.activityMainDrawer_logout) {
+            Intent login_intent = new Intent(this, LoginActivity.class);
+            startActivity(login_intent);
         } else if (id == R.id.activityMainDrawer_settings) {
 
         }
@@ -222,5 +244,4 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
-
 }

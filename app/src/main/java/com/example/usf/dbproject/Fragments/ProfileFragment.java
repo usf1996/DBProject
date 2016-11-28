@@ -1,6 +1,8 @@
 package com.example.usf.dbproject.Fragments;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,10 +19,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.usf.dbproject.Login.LoginActivity;
+import com.example.usf.dbproject.MainActivity;
 import com.example.usf.dbproject.R;
+import com.example.usf.dbproject.SearchActivity;
 import com.example.usf.dbproject.ViewPagerAdapter;
 
-public class ProfileFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class ProfileFragment extends Fragment {
 
 
     public ProfileFragment() {
@@ -67,39 +73,5 @@ public class ProfileFragment extends Fragment implements SearchView.OnQueryTextL
         adapter.addFrag(new SeriesFragment(), "My Series");
         adapter.addFrag(new SeriesFragment(), "My Stats");
         viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.main_toolbar, menu);
-
-        final MenuItem item = menu.findItem(R.id.mainToolbar_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setOnQueryTextListener(this);
-
-        MenuItemCompat.setOnActionExpandListener(item,
-                new MenuItemCompat.OnActionExpandListener() {
-                    @Override
-                    public boolean onMenuItemActionCollapse(MenuItem item) {
-                        // Do something when collapsed
-                        return true; // Return true to collapse action view
-                    }
-
-                    @Override
-                    public boolean onMenuItemActionExpand(MenuItem item) {
-                        // Do something when expanded
-                        return true; // Return true to expand action view
-                    }
-                });
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        return false;
     }
 }
