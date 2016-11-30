@@ -23,6 +23,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MainActivity.ProfileORSearch = 1;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
