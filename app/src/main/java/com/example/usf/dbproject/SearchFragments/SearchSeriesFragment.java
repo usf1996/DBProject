@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.usf.dbproject.Entities.Movie;
+import com.example.usf.dbproject.Entities.Series;
 import com.example.usf.dbproject.R;
 import com.example.usf.dbproject.RecyclerView.RecyclerViewAdapter;
 
@@ -23,14 +24,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchMovieFragment extends Fragment implements SearchView.OnQueryTextListener {
+public class SearchSeriesFragment extends Fragment implements SearchView.OnQueryTextListener {
 
-    private List<Object> movies;
+    private List<Object> series;
     private RecyclerView rv;
     private RecyclerViewAdapter rvadapter;
 
 
-    public SearchMovieFragment() {
+    public SearchSeriesFragment() {
         // Required empty public constructor
     }
 
@@ -39,21 +40,21 @@ public class SearchMovieFragment extends Fragment implements SearchView.OnQueryT
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.searchmovie_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.searchseries_fragment, container, false);
 
-        rv = (RecyclerView) rootView.findViewById(R.id.searchMovie_rv);
+        rv = (RecyclerView) rootView.findViewById(R.id.searchSeries_rv);
         rv.setHasFixedSize(true);
 
         LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
         rv.setLayoutManager(llm);
 
-        movies = new ArrayList<>();
-        movies.add(new Movie("Movie 1", "Genre 1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.myphoto));
-        movies.add(new Movie("Movie 2", "Genre 2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_manage));
-        movies.add(new Movie("Movie 3", "Genre 3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_gallery));
+        series = new ArrayList<>();
+        series.add(new Series("Series 1", "Genre 1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_camera));
+        series.add(new Series("Series 2", "Genre 2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_manage));
+        series.add(new Series("Series 3", "Genre 3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_gallery));
 
         //Create adapter that will be the middle man between the recycler view and the dataset
-        rvadapter = new RecyclerViewAdapter(movies);
+        rvadapter = new RecyclerViewAdapter(series);
         rv.setAdapter(rvadapter);
 
         setHasOptionsMenu(true);
@@ -79,7 +80,7 @@ public class SearchMovieFragment extends Fragment implements SearchView.OnQueryT
         newText = newText.toLowerCase().trim();
 
         final List<Object> filteredModelList = new ArrayList<>();
-        for (Object movie : movies) {
+        for (Object movie : series) {
             Movie m = (Movie) movie;
             final String text = m.getMovie_title().toLowerCase();
             if (text.contains(newText)) {

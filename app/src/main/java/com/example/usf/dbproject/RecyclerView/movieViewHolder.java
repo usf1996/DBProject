@@ -1,18 +1,15 @@
 package com.example.usf.dbproject.RecyclerView;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.usf.dbproject.Fragments.ProfileFragment;
 import com.example.usf.dbproject.MainActivity;
-import com.example.usf.dbproject.MovieViewFragment;
+import com.example.usf.dbproject.ViewFragments.MovieViewFragment;
 import com.example.usf.dbproject.R;
 
 //Create a reference to the views for each data item

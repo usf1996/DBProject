@@ -59,7 +59,7 @@ public class ProfileFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFrag(new MovieFragment(), "My Movies");
-        adapter.addFrag(new SeriesFragment(), "My Series");
+        adapter.addFrag(new SeriesFragment(), "My User");
         adapter.addFrag(new SeriesFragment(), "My Stats");
         viewPager.setAdapter(adapter);
     }

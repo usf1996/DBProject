@@ -12,6 +12,8 @@ import android.view.MenuItem;
 
 import com.example.usf.dbproject.RecyclerView.RecyclerViewAdapter;
 import com.example.usf.dbproject.SearchFragments.SearchMovieFragment;
+import com.example.usf.dbproject.SearchFragments.SearchSeriesFragment;
+import com.example.usf.dbproject.SearchFragments.SearchUserFragment;
 
 import java.util.List;
 
@@ -55,9 +57,9 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new SearchMovieFragment(), "Movie");
-        adapter.addFrag(new SearchMovieFragment(), "Series");
-        adapter.addFrag(new SearchMovieFragment(), "Users");
+        adapter.addFrag(new SearchMovieFragment(), "Movies");
+        adapter.addFrag(new SearchSeriesFragment(), "Series");
+        adapter.addFrag(new SearchUserFragment(), "Users");
         viewPager.setAdapter(adapter);
 
     }

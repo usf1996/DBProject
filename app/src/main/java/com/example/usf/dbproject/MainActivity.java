@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.usf.dbproject.Fragments.ProfileFragment;
 import com.example.usf.dbproject.Login.LoginActivity;
+import com.example.usf.dbproject.ViewFragments.MovieViewFragment;
 
 /*import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
