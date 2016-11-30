@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -141,25 +139,17 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_toolbar, menu);
 
-        final MenuItem item = menu.findItem(R.id.mainToolbar_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+        MenuItem item = menu.findItem(R.id.mainToolbar_search);
 
-        final SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
+
             @Override
-            public boolean onQueryTextSubmit(String query) {
+            public boolean onMenuItemClick(MenuItem item) {
                 Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                 startActivity(intent);
-                return true;
+                return false;
             }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-
-                return true;
-
-            }
-        };
-        searchView.setOnQueryTextListener(queryTextListener);
+        });
         return true;
     }
 

@@ -9,6 +9,7 @@ import com.example.usf.dbproject.Entities.Movie;
 import com.example.usf.dbproject.Entities.Series;
 import com.example.usf.dbproject.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -96,4 +97,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return -1;
     }
 
+    public void setFilter(List<Object> filteredModelList) {
+        obj = new ArrayList<>();
+        obj.addAll(filteredModelList);
+        notifyDataSetChanged();
+    }
 }

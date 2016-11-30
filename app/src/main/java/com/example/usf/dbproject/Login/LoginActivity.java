@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
 
-                if (username.equals(password) && password.equals("admin")) {
+                if (username.equals(password) && password.equals("")) {
 
 
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);

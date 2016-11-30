@@ -22,6 +22,10 @@ import java.util.List;
  */
 public class MovieFragment extends Fragment {
 
+    private List<Object> movies;
+    private RecyclerView rv;
+    private RecyclerViewAdapter rvadapter;
+
     public MovieFragment() {
         // Required empty public constructor
     }
@@ -33,7 +37,7 @@ public class MovieFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_movie, container, false);
 
         //Create a RecyclerView object and fix its size to improve performance
-        RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.fragmentMovies_rv);
+        rv = (RecyclerView) rootView.findViewById(R.id.fragmentMovies_rv);
         rv.setHasFixedSize(true);
 
         //Create a layout to manage the position of the items in the recycler view
@@ -41,17 +45,15 @@ public class MovieFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
         rv.setLayoutManager(llm);
 
-        //This is the placeholder of the data which will later be replaced with data from the DB
-        List<Object> movies = new ArrayList<>();
+        movies = new ArrayList<>();
         movies.add(new Movie("Movie 1", "Genre 1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.myphoto));
         movies.add(new Movie("Movie 2", "Genre 2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_manage));
         movies.add(new Movie("Movie 3", "Genre 3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_gallery));
 
         //Create adapter that will be the middle man between the recycler view and the dataset
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(movies);
-        rv.setAdapter(adapter);
+        rvadapter = new RecyclerViewAdapter(movies);
+        rv.setAdapter(rvadapter);
 
         return rootView;
     }
-
 }
