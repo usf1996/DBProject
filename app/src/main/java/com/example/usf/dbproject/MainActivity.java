@@ -139,9 +139,11 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_toolbar, menu);
 
-        MenuItem item = menu.findItem(R.id.mainToolbar_search);
+        MenuItem search_item = menu.findItem(R.id.mainToolbar_searchMain);
+        MenuItem sort_item = menu.findItem(R.id.mainToolbar_search);
+        sort_item.setVisible(false);
 
-        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        search_item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
             @Override
             public boolean onMenuItemClick(MenuItem item) {

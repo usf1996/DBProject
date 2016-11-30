@@ -1,28 +1,15 @@
 package com.example.usf.dbproject.Fragments;
 
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.usf.dbproject.Login.LoginActivity;
-import com.example.usf.dbproject.MainActivity;
 import com.example.usf.dbproject.R;
-import com.example.usf.dbproject.SearchActivity;
 import com.example.usf.dbproject.ViewPagerAdapter;
 
 public class ProfileFragment extends Fragment {

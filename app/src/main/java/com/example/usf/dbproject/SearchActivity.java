@@ -6,14 +6,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.widget.EditText;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.usf.dbproject.RecyclerView.RecyclerViewAdapter;
 import com.example.usf.dbproject.SearchFragments.SearchMovieFragment;
 
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class SearchActivity extends AppCompatActivity {
 
     private List<Object> movies, series, users;
     public String newTxt;
@@ -31,12 +33,23 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        SearchView searchView = (SearchView) findViewById(R.id.activitySearch_searchview);
-        searchView.setIconifiedByDefault(false);
-
         viewPager = (ViewPager) findViewById(R.id.activitySearch_viewpager);
         setupViewPager(viewPager);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_toolbar, menu);
+
+        MenuItem mainsearch = menu.findItem(R.id.mainToolbar_searchMain);
+        mainsearch.setVisible(false);
+
+        MenuItem search = menu.findItem(R.id.mainToolbar_search);
+        search.expandActionView();
+
+        return true;
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -48,14 +61,4 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
-
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        return false;
-    }
 }

@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/mainToolbar_search"
-        android:title="Search"
+        android:id="@+id/mainToolbar_searchMain"
         android:icon="@android:drawable/ic_menu_search"
+        android:title="Search Main"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/mainToolbar_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="always|collapseActionView" />
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/mainToolbar_sortaz"
+            android:title="Sort a-z" />
+        <item
+            android:id="@+id/mainToolbar_sortza"
+            android:title="Sort z-a" />
+        <item
+            android:id="@+id/mainToolbar_sortBydateasc"
+            android:title="Sort by Date (Ascending)" />
+        <item
+            android:id="@+id/mainToolbar_sortBydatedsc"
+            android:title="Sort by Date (Descending)" />
+    </group>
+
+    <item
+        android:id="@+id/mainToolbar_sortByGenre"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="Group by Genre"
+        app:showAsAction="always" />
 
 </menu>
