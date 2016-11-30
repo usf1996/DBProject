@@ -7,8 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,29 +63,17 @@ public class SearchMovieFragment extends Fragment implements SearchView.OnQueryT
         rvadapter = new RecyclerViewAdapter(movies);
         rv.setAdapter(rvadapter);
 
-        SearchView searchView = (SearchView) rootView.findViewById(R.id.searchMovie_searchview);
-        searchView.setIconifiedByDefault(false);
-
-        searchView.setOnQueryTextListener(this);
-
-        rv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-                return false;
-            }
-
-            @Override
-            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-                Log.d("tag", "onClick: ");
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-            }
-        });
+        setHasOptionsMenu(true);
 
         return rootView;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem search = menu.findItem(R.id.mainToolbar_search);
+        SearchView searchView = (SearchView) search.getActionView();
+        searchView.setOnQueryTextListener(this);
+
     }
 
     @Override
@@ -91,7 +83,7 @@ public class SearchMovieFragment extends Fragment implements SearchView.OnQueryT
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        newText = newText.toLowerCase();
+        newText = newText.toLowerCase().trim();
 
         final List<Object> filteredModelList = new ArrayList<>();
         for (Object movie : movies) {
