@@ -56,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    }
+
+}
 
 /*                // Response received from the server
                 Response.Listener<String> responseListener = new Response.Listener<String>() {

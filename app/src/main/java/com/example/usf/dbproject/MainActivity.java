@@ -4,13 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,7 +17,6 @@ import android.widget.TextView;
 
 import com.example.usf.dbproject.Fragments.ProfileFragment;
 import com.example.usf.dbproject.Login.LoginActivity;
-import com.example.usf.dbproject.RecyclerView.App;
 
 /*import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -32,23 +29,19 @@ import com.android.volley.toolbox.Volley;*/
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     public static int ProfileORSearch;
     public static int ProfileORSearch1;
-    //public static FragmentManager fm;
-   // public static View mainView;
+
     //RequestQueue requestQueue;
     //String showUrl = "http://10.10.30.121/Android/showMembers.php"; //Ip address of your laptop, on your local network
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // FragmentManager fm = getSupportFragmentManager();
-       // mainView = new View(null);
-        App.setContext(this);
-        MainActivity.ProfileORSearch = 0;
 
+        MainActivity.ProfileORSearch = 0;
 
         /*requestQueue = Volley.newRequestQueue(getApplicationContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
@@ -125,17 +118,15 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Set profile screen as default screen on startup
-       if(ProfileORSearch1 == 1){
-           FragmentManager manager1 = getSupportFragmentManager();
-           manager1.beginTransaction().replace(R.id.contentMain_frameLayout, new MovieViewFragment()).commit();
-       }
-        else{
-           ProfileORSearch1 =0;
-           ProfileFragment profileFragment1 = new ProfileFragment();
-           FragmentManager manager1 = getSupportFragmentManager();
-           manager1.beginTransaction().replace(R.id.contentMain_frameLayout, profileFragment1).commit();
-       }
-
+        if (ProfileORSearch1 == 1) {
+            FragmentManager manager1 = getSupportFragmentManager();
+            manager1.beginTransaction().replace(R.id.contentMain_frameLayout, new MovieViewFragment()).commit();
+        } else {
+            ProfileORSearch1 = 0;
+            ProfileFragment profileFragment1 = new ProfileFragment();
+            FragmentManager manager1 = getSupportFragmentManager();
+            manager1.beginTransaction().replace(R.id.contentMain_frameLayout, profileFragment1).commit();
+        }
         Toolbar tb1 = (Toolbar) findViewById(R.id.appBarMain_toolbar);
         tb1.setTitle("My Profile");
 
@@ -144,15 +135,15 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.activityMain_drawerLayout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+//            super.onBackPressed();
             ProfileORSearch1 = 0;
-            Intent intent = new Intent (this, MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
     }

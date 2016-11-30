@@ -1,9 +1,6 @@
 package com.example.usf.dbproject.RecyclerView;
 
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -13,12 +10,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.usf.dbproject.Entities.Movie;
 import com.example.usf.dbproject.Fragments.ProfileFragment;
 import com.example.usf.dbproject.MainActivity;
 import com.example.usf.dbproject.MovieViewFragment;
 import com.example.usf.dbproject.R;
-import com.example.usf.dbproject.SearchActivity;
 
 //Create a reference to the views for each data item
 //where you hold the views of each data item
@@ -57,8 +52,6 @@ public class movieViewHolder extends RecyclerView.ViewHolder {
                     v.getContext().startActivity(intent);
 
                 }
-
-
             }
         });
 

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.usf.dbproject.MainActivity;
 import com.example.usf.dbproject.R;
 import com.example.usf.dbproject.ViewPagerAdapter;
 
@@ -23,7 +24,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_profile,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         MainActivity.ProfileORSearch = 0;
 
         //Get the viewpager that will hold the different child fragments and setup the viewpager adapter
