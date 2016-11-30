@@ -7,11 +7,12 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:id="@+id/activitySearch_linearLayout"
     tools:context="com.example.usf.dbproject.SearchActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar

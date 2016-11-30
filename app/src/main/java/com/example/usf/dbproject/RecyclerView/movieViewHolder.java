@@ -1,11 +1,15 @@
 package com.example.usf.dbproject.RecyclerView;
 
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.usf.dbproject.Fragments.ProfileFragment;
+import com.example.usf.dbproject.MovieViewFragment;
 import com.example.usf.dbproject.R;
 
 //Create a reference to the views for each data item
@@ -24,6 +28,15 @@ public class movieViewHolder extends RecyclerView.ViewHolder {
         genre = (TextView)itemView.findViewById(R.id.cardView_genre);
         description = (TextView)itemView.findViewById(R.id.cardView_description);
         photoID = (ImageView)itemView.findViewById(R.id.cardView_photo);
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("tag", "onClick: ");
+            }
+        });
+
+
     }
 
     public CardView getCv() {
@@ -65,4 +78,5 @@ public class movieViewHolder extends RecyclerView.ViewHolder {
     public void setPhotoID(ImageView photoID) {
         this.photoID = photoID;
     }
+
 }

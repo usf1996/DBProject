@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
 
         MenuItem item = menu.findItem(R.id.mainToolbar_search);
 
-        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
 
             @Override
             public boolean onMenuItemClick(MenuItem item) {

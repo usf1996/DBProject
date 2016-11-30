@@ -3,14 +3,19 @@ package com.example.usf.dbproject.SearchFragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.usf.dbproject.Entities.Movie;
+import com.example.usf.dbproject.Fragments.ProfileFragment;
+import com.example.usf.dbproject.MovieViewFragment;
 import com.example.usf.dbproject.R;
 import com.example.usf.dbproject.RecyclerView.RecyclerViewAdapter;
 
@@ -58,6 +63,23 @@ public class SearchMovieFragment extends Fragment implements SearchView.OnQueryT
         searchView.setIconifiedByDefault(false);
 
         searchView.setOnQueryTextListener(this);
+
+        rv.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+                Log.d("tag", "onClick: ");
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+            }
+        });
 
         return rootView;
     }
