@@ -3,13 +3,14 @@ package com.example.usf.dbproject.Requests;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.example.usf.dbproject.Login.LoginActivity;
+import com.example.usf.dbproject.MainActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class MySeriesRequest extends StringRequest {
-    private static final String SearchSeries_REQUEST_URL = "http://192.168.0.100/dbscript/seriesmyprofile.php";
+    private static final String SearchSeries_REQUEST_URL = "http://" + MainActivity.IP + "/dbscript/seriesmyprofile.php";
     private Map<String, String> params;
 
     public MySeriesRequest(Response.Listener<String> listener) {

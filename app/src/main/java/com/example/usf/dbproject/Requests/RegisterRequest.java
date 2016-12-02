@@ -4,13 +4,14 @@ import android.util.Log;
 
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.example.usf.dbproject.MainActivity;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterRequest extends StringRequest {
-    private static final String REGISTER_REQUEST_URL = "http://192.168.0.100/dbscript/register.php";
+    private static final String REGISTER_REQUEST_URL = "http://" + MainActivity.IP + "/dbscript/register.php";
     private Map<String, String> params;
 
     public RegisterRequest (String fname, String  lname, String  username, String  email, String  password,

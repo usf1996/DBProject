@@ -1,13 +1,16 @@
 package com.example.usf.dbproject.Requests;
 
+import android.util.Log;
+
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
+import com.example.usf.dbproject.MainActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class LoginRequest extends StringRequest {
-    private static final String LOGIN_REQUEST_URL = "http://192.168.0.100/dbscript/login.php";
+    private static final String LOGIN_REQUEST_URL = "http://" + MainActivity.IP + "/dbscript/login.php";
     private Map<String, String> params;
 
     public LoginRequest(String username, String password, Response.Listener<String> listener) {
@@ -15,6 +18,9 @@ public class LoginRequest extends StringRequest {
         params = new HashMap<>();
         params.put("username", username);
         params.put("password", password);
+
+        Log.i("aaa", "LoginRequest: " + LOGIN_REQUEST_URL);
+
     }
 
     @Override

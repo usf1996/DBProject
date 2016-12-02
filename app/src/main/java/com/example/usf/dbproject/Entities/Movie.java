@@ -2,19 +2,20 @@ package com.example.usf.dbproject.Entities;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Movie {
     private int movieID,companyID,duration;
     private String title,releaseDate,storyline,contentRating;
-    private ArrayList<String> genres;
+    private List<String> genres;
 
-    /*public ArrayList<String> getGenres() {
+    public List<String> getGenres() {
         return genres;
     }
 
-    public void setGenres(ArrayList<String> genres) {
+    public void setGenres(List<String> genres) {
         this.genres = genres;
-    }*/
+    }
 
     public Movie(int movieID, int companyID, String title,
                  int duration, String releaseDate, String storyline, String contentRating) {

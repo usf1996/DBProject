@@ -5,13 +5,14 @@ import android.util.Log;
 import com.android.volley.Response;
 import com.android.volley.toolbox.StringRequest;
 import com.example.usf.dbproject.Login.LoginActivity;
+import com.example.usf.dbproject.MainActivity;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class MyMovieRequest extends StringRequest {
-    private static final String SearchMovie_REQUEST_URL = "http://192.168.0.100/dbscript/moviesmyprofile.php";
+    private static final String SearchMovie_REQUEST_URL = "http://" + MainActivity.IP + "/dbscript/moviesmyprofile.php";
     private Map<String, String> params;
 
     public MyMovieRequest(Response.Listener<String> listener) {

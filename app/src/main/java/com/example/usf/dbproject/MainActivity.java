@@ -24,6 +24,7 @@ import com.example.usf.dbproject.Entities.Movie;
 import com.example.usf.dbproject.Entities.Series;
 import com.example.usf.dbproject.Fragments.ProfileFragment;
 import com.example.usf.dbproject.Login.LoginActivity;
+import com.example.usf.dbproject.Requests.MovieGenreRequest;
 import com.example.usf.dbproject.Requests.MyMovieRequest;
 import com.example.usf.dbproject.Requests.MySeriesRequest;
 import com.example.usf.dbproject.ViewFragments.MovieViewFragment;
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity
     public static List<Object> mymovies, myseries;
     public static int ProfileORSearch;
     public static int ProfileORSearch1;
-//    public static List<JSONArray> genresArr;
+    public static List<JSONArray> genresArr;
+    public static String IP = "192.168.43.180";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity
 
         mymovies = new ArrayList<>();
         myseries = new ArrayList<>();
+        genresArr = new ArrayList<>();
 
         RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
 
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity
                         }
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                        builder.setMessage("Loading Failed")
+                        builder.setMessage("Loading My Movies Failed")
                                 .setNegativeButton("Retry", null)
                                 .create()
                                 .show();
@@ -132,7 +135,7 @@ public class MainActivity extends AppCompatActivity
                         }
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                        builder.setMessage("Loading Failed")
+                        builder.setMessage("Loading My Series Failed")
                                 .setNegativeButton("Retry", null)
                                 .create()
                                 .show();
@@ -147,21 +150,36 @@ public class MainActivity extends AppCompatActivity
         MySeriesRequest myMovieRequest2 = new MySeriesRequest(responseListener2);
         queue.add(myMovieRequest2);
 
-
-        /*genresArr = new ArrayList<>();
-
-        final Response.Listener<String> responseListener2 = new Response.Listener<String>() {
+        /*final Response.Listener<String> responseListener3 = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if(success){
-                        JSONArray moviegenres = jsonResponse.getJSONArray("moviegenres");
-                        for(int i=0;i<moviegenres.length();i++){
-                            genresArr.add(moviegenres.getJSONArray(0));
+                        JSONArray moviegenres = jsonResponse.getJSONArray("moviegenre");
+                        JSONArray genre;
+                        Movie m;
+                        List<String> genres = new ArrayList<>();
+                        Log.i("qqq", "onCreate: " + mymovies.size());
+                        for(int i=0;i<mymovies.size();i++){
+                            m = (Movie) mymovies.get(i);
+                            for(int j=0;j<moviegenres.length();j++){
+                                genre = moviegenres.getJSONArray(j);
+                                if(m.getMovieID() == Integer.parseInt(genre.get(0).toString())){
+                                    genres.add(genre.get(1).toString());
+                                }
+                            }
+                            m.setGenres(genres);
                         }
+                        Log.i("qqq", "onCreate: " + genres.size());
 
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setMessage("Loading Genre Failed")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
                     }
 
                 } catch (JSONException e1) {
@@ -171,9 +189,9 @@ public class MainActivity extends AppCompatActivity
         };
 
 
-        MovieGenreRequest mgr = new MovieGenreRequest(responseListener2);
-        RequestQueue queue2 = Volley.newRequestQueue(MainActivity.this);
-        queue2.add(mgr);*/
+
+        MovieGenreRequest movieGenreRequest = new MovieGenreRequest(responseListener3);
+        queue.add(movieGenreRequest);*/
 
         //Set profile screen as default screen on startup
         if (ProfileORSearch1 == 1) {
