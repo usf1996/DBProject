@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.usf.dbproject.Entities.Movie;
-import com.example.usf.dbproject.Entities.Series;
 import com.example.usf.dbproject.R;
-import com.example.usf.dbproject.RecyclerView.RecyclerViewAdapter;
+import com.example.usf.dbproject.RecyclerViewAndAdapters.RecyclerViewAdapter;
+import com.example.usf.dbproject.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class SearchSeriesFragment extends Fragment implements SearchView.OnQueryTextListener {
 
-    private List<Object> series;
+    private List<Object> series = new ArrayList<>();
     private RecyclerView rv;
     private RecyclerViewAdapter rvadapter;
 
@@ -48,10 +48,7 @@ public class SearchSeriesFragment extends Fragment implements SearchView.OnQuery
         LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
         rv.setLayoutManager(llm);
 
-        series = new ArrayList<>();
-        series.add(new Series("Series 1", "Genre 1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_camera));
-        series.add(new Series("Series 2", "Genre 2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_manage));
-        series.add(new Series("Series 3", "Genre 3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_gallery));
+        series = SearchActivity.series;
 
         //Create adapter that will be the middle man between the recycler view and the dataset
         rvadapter = new RecyclerViewAdapter(series);
@@ -82,7 +79,7 @@ public class SearchSeriesFragment extends Fragment implements SearchView.OnQuery
         final List<Object> filteredModelList = new ArrayList<>();
         for (Object movie : series) {
             Movie m = (Movie) movie;
-            final String text = m.getMovie_title().toLowerCase();
+            final String text = m.getTitle().toLowerCase();
             if (text.contains(newText)) {
                 filteredModelList.add(movie);
             }

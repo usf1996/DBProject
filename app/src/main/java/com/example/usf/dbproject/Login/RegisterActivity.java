@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
@@ -17,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.usf.dbproject.DatePickerFragment;
 import com.example.usf.dbproject.R;
+import com.example.usf.dbproject.Requests.RegisterRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,7 +52,6 @@ public class RegisterActivity extends AppCompatActivity {
                 date.setYear(date.getYear() - 1900);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 final String sqldate = sdf.format(date);
-                Log.d("taag", "onClick: " + sqldate);
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override

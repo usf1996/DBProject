@@ -1,4 +1,4 @@
-package com.example.usf.dbproject.RecyclerView;
+package com.example.usf.dbproject.RecyclerViewAndAdapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -71,19 +71,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     //set the data of the different views in the viewholder to the data of the dataset
     private void configureSeriesViewHolder(seriesViewHolder svh, int position) {
         Series series = (Series) obj.get(position);
-        svh.getTitle().setText(series.getSeries_title());
-        svh.getGenre().setText(series.getSeries_genre());
-        svh.getDescription().setText(series.getSeries_description());
-        svh.getPhotoID().setImageResource(series.getSeries_photoID());
+        svh.getTitle().setText(series.getTitle());
+        svh.getGenre().setText("a7be");
+        svh.getDescription().setText(series.getStoryline());
+        svh.getPhotoID().setImageResource(R.drawable.ic_menu_camera);
     }
 
     //set the data of the different views in the viewholder to the data of the dataset
     private void configureMovieViewHolder(movieViewHolder mvh, int position) {
         Movie movie = (Movie) obj.get(position);
-        mvh.getTitle().setText(movie.getMovie_title());
-        mvh.getGenre().setText(movie.getMovie_genre());
-        mvh.getDescription().setText(movie.getMovie_description());
-        mvh.getPhotoID().setImageResource(movie.getMovie_photoID());
+
+        mvh.getTitle().setText(movie.getTitle());
+        mvh.getGenre().setText("sharmuta");
+        mvh.getDescription().setText(movie.getStoryline());
+        mvh.getPhotoID().setImageResource(R.drawable.ic_menu_camera);
     }
 
     @Override

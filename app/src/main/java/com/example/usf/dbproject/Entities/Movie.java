@@ -1,46 +1,89 @@
 package com.example.usf.dbproject.Entities;
 
 
+import java.util.ArrayList;
+
 public class Movie {
-    private String movie_title, movie_genre, movie_description;
-    private int movie_photoID;
+    private int movieID,companyID,duration;
+    private String title,releaseDate,storyline,contentRating;
+    private ArrayList<String> genres;
 
-    public Movie(String movie_title, String movie_genre, String movie_description, int movie_photoID) {
-        this.movie_title = movie_title;
-        this.movie_genre = movie_genre;
-        this.movie_description = movie_description;
-        this.movie_photoID = movie_photoID;
+    /*public ArrayList<String> getGenres() {
+        return genres;
     }
 
-    public String getMovie_title() {
-        return movie_title;
+    public void setGenres(ArrayList<String> genres) {
+        this.genres = genres;
+    }*/
+
+    public Movie(int movieID, int companyID, String title,
+                 int duration, String releaseDate, String storyline, String contentRating) {
+        this.movieID = movieID;
+        this.companyID = companyID;
+        this.title = title;
+        this.duration = duration;
+        this.releaseDate = releaseDate;
+        this.storyline = storyline;
+        this.contentRating = contentRating;
     }
 
-    public void setMovie_title(String movie_title) {
-        this.movie_title = movie_title;
+    public Movie (){
+
     }
 
-    public String getMovie_genre() {
-        return movie_genre;
+    public int getMovieID() {
+        return movieID;
     }
 
-    public void setMovie_genre(String movie_genre) {
-        this.movie_genre = movie_genre;
+    public void setMovieID(int movieID) {
+        this.movieID = movieID;
     }
 
-    public String getMovie_description() {
-        return movie_description;
+    public int getCompanyID() {
+        return companyID;
     }
 
-    public void setMovie_description(String movie_description) {
-        this.movie_description = movie_description;
+    public void setCompanyID(int companyID) {
+        this.companyID = companyID;
     }
 
-    public int getMovie_photoID() {
-        return movie_photoID;
+    public String getTitle() {
+        return title;
     }
 
-    public void setMovie_photoID(int movie_photoID) {
-        this.movie_photoID = movie_photoID;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getStoryline() {
+        return storyline;
+    }
+
+    public void setStoryline(String storyline) {
+        this.storyline = storyline;
+    }
+
+    public String getContentRating() {
+        return contentRating;
+    }
+
+    public void setContentRating(String contentRating) {
+        this.contentRating = contentRating;
     }
 }

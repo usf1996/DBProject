@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.example.usf.dbproject.Entities.User;
 import com.example.usf.dbproject.MainActivity;
 import com.example.usf.dbproject.R;
+import com.example.usf.dbproject.Requests.LoginRequest;
 
 
 import org.json.JSONException;
@@ -23,8 +25,13 @@ import org.json.JSONObject;
 
 
 public class LoginActivity extends AppCompatActivity {
+
+    public static User currentuser = new User();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -62,6 +69,18 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
+                                JSONObject info = jsonResponse.getJSONObject("info");
+                                currentuser = new User (
+                                        Integer.parseInt(info.getString("userID")),
+                                        info.getString("username"),
+                                        info.getString("passcode"),
+                                        info.getString("email"),
+                                        info.getString("firstName"),
+                                        info.getString("lastName"),
+                                        info.getString("dateOfBirth"),
+                                        info.getString("dateCreated"),
+                                        info.getString("gender").charAt(0)
+                                );
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 LoginActivity.this.startActivity(intent);
                             } else {

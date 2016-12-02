@@ -1,4 +1,4 @@
-package com.example.usf.dbproject.RecyclerView;
+package com.example.usf.dbproject.RecyclerViewAndAdapters;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

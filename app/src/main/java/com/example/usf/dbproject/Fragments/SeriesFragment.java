@@ -9,9 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.usf.dbproject.Entities.Series;
+import com.example.usf.dbproject.MainActivity;
 import com.example.usf.dbproject.R;
-import com.example.usf.dbproject.RecyclerView.RecyclerViewAdapter;
+import com.example.usf.dbproject.RecyclerViewAndAdapters.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +21,8 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class SeriesFragment extends Fragment {
+
+    private List<Object> myseries = new ArrayList<>();
 
     public SeriesFragment() {
         // Required empty public constructor
@@ -41,14 +43,11 @@ public class SeriesFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
         rv.setLayoutManager(llm);
 
-        //This is the placeholder of the data which will later be replaced with data from the DB
-        List<Object> series = new ArrayList<>();
-        series.add(new Series("Series 1", "Genre 1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_camera));
-        series.add(new Series("Series 2", "Genre 2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_manage));
-        series.add(new Series("Series 3", "Genre 3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_gallery));
+        myseries = MainActivity.myseries;
+
 
         //Create adapter that will be the middle man between the recycler view and the dataset
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(series);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(myseries);
         rv.setAdapter(adapter);
 
         return rootView;

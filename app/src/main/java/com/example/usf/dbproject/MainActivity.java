@@ -1,5 +1,6 @@
 package com.example.usf.dbproject;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -9,33 +10,38 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.usf.dbproject.Fragments.ProfileFragment;
-import com.example.usf.dbproject.Login.LoginActivity;
-import com.example.usf.dbproject.ViewFragments.MovieViewFragment;
-
-/*import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;*/
+import com.android.volley.toolbox.Volley;
+import com.example.usf.dbproject.Entities.Movie;
+import com.example.usf.dbproject.Entities.Series;
+import com.example.usf.dbproject.Fragments.ProfileFragment;
+import com.example.usf.dbproject.Login.LoginActivity;
+import com.example.usf.dbproject.Requests.MyMovieRequest;
+import com.example.usf.dbproject.Requests.MySeriesRequest;
+import com.example.usf.dbproject.ViewFragments.MovieViewFragment;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static List<Object> mymovies, myseries;
     public static int ProfileORSearch;
     public static int ProfileORSearch1;
-
-    //RequestQueue requestQueue;
-    //String showUrl = "http://10.10.30.121/Android/showMembers.php"; //Ip address of your laptop, on your local network
+//    public static List<JSONArray> genresArr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,70 +49,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         MainActivity.ProfileORSearch = 0;
-
-        /*requestQueue = Volley.newRequestQueue(getApplicationContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                showUrl, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                    try {
-                        JSONArray members = response.getJSONArray("Family Members");
-
-                        for (int i = 0; i < members.length(); i++) {
-
-                            JSONObject member = members.getJSONObject(i);
-                            String name = member.getString("name");
-                            result.append(name + "\n");
-                        }
-
-                        ;
-                    }catch(JSONException e){
-                        e.printStackTrace();
-
-                    }
-
-                }
-            }, new Response.ErrorListener() {
-
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                }
-            });
-            requestQueue.add(jsonObjectRequest);
-
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                StringRequest request = new StringRequest(Request.Method.POST,insertUrl, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-
-                    }
-                }, new Response.ErrorListener() {
-
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                }){
-                    @Override
-                    protected Map<String, String> getParams() throws AuthFailureError {
-                        Map <String,String> parameters = new HashMap<String,String>();
-                        parameters.put("name" , name.getText().toString() );
-                        return parameters;
-
-                    }
-                };
-                requestQueue.add(request);
-
-            }
-        });
-        */
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.appBarMain_toolbar);
         setSupportActionBar(toolbar);
@@ -118,6 +60,120 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.activityMain_navHeader);
         navigationView.setNavigationItemSelectedListener(this);
+
+        mymovies = new ArrayList<>();
+        myseries = new ArrayList<>();
+
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+
+        final Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        JSONArray moviesinfo = jsonResponse.getJSONArray("moviesinfo");
+                        JSONObject movie;
+                        for (int i = 0; i < moviesinfo.length(); i++) {
+                            movie = moviesinfo.getJSONObject(i);
+                            Movie movieToadd = new Movie(
+                                    Integer.parseInt(movie.getString("movieID")),
+                                    Integer.parseInt(movie.getString("companyID")),
+                                    movie.getString("title"),
+                                    Integer.parseInt(movie.getString("duration")),
+                                    movie.getString("releaseDate"),
+                                    movie.getString("storyline"),
+                                    movie.getString("contentRating"));
+                            mymovies.add(movieToadd);
+                        }
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setMessage("Loading Failed")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
+                    }
+
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+        };
+
+        MyMovieRequest myMovieRequest = new MyMovieRequest(responseListener);
+        queue.add(myMovieRequest);
+
+        final Response.Listener<String> responseListener2 = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        JSONArray seriesinfo = jsonResponse.getJSONArray("seriesinfo");
+                        JSONObject serie;
+                        for (int i = 0; i < seriesinfo.length(); i++) {
+                            serie = seriesinfo.getJSONObject(i);
+                            Series toAdd = new Series();
+                            toAdd.setTitle(serie.getString("title"));
+                            toAdd.setCompanyID(Integer.parseInt(serie.getString("companyID")));
+                            toAdd.setSeriesID(Integer.parseInt(serie.getString("seriesID")));
+                            toAdd.setContentRating(serie.getString("contentRating"));
+                            toAdd.setStoryline(serie.getString("storyline"));
+                            toAdd.setDuration(Integer.parseInt(serie.getString("duration")));
+                            toAdd.setStartDate(serie.getString("startDate"));
+
+                            toAdd.setEndDate("test"); //Ntebeh hay yimkin ta3mol error la2ano null;
+
+                            myseries.add(toAdd);
+                        }
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setMessage("Loading Failed")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
+                    }
+
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        };
+
+        MySeriesRequest myMovieRequest2 = new MySeriesRequest(responseListener2);
+        queue.add(myMovieRequest2);
+
+
+        /*genresArr = new ArrayList<>();
+
+        final Response.Listener<String> responseListener2 = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if(success){
+                        JSONArray moviegenres = jsonResponse.getJSONArray("moviegenres");
+                        for(int i=0;i<moviegenres.length();i++){
+                            genresArr.add(moviegenres.getJSONArray(0));
+                        }
+
+                    }
+
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        };
+
+
+        MovieGenreRequest mgr = new MovieGenreRequest(responseListener2);
+        RequestQueue queue2 = Volley.newRequestQueue(MainActivity.this);
+        queue2.add(mgr);*/
 
         //Set profile screen as default screen on startup
         if (ProfileORSearch1 == 1) {
@@ -252,4 +308,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
     }
+
+
 }

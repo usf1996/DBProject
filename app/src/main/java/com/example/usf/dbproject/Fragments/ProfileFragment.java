@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.usf.dbproject.MainActivity;
 import com.example.usf.dbproject.R;
-import com.example.usf.dbproject.ViewPagerAdapter;
+import com.example.usf.dbproject.RecyclerViewAndAdapters.ViewPagerAdapter;
 
 public class ProfileFragment extends Fragment {
 
@@ -59,8 +59,8 @@ public class ProfileFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFrag(new MovieFragment(), "My Movies");
-        adapter.addFrag(new SeriesFragment(), "My User");
-        adapter.addFrag(new SeriesFragment(), "My Stats");
+        adapter.addFrag(new SeriesFragment(), "My Series");
+        adapter.addFrag(new SeriesFragment(), "My Info");
         viewPager.setAdapter(adapter);
     }
 }

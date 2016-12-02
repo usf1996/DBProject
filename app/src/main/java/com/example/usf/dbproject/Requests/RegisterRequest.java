@@ -1,4 +1,4 @@
-package com.example.usf.dbproject.Login;
+package com.example.usf.dbproject.Requests;
 
 import android.util.Log;
 
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterRequest extends StringRequest {
-    private static final String REGISTER_REQUEST_URL = "http://192.168.43.180/dbscript/register.php";
+    private static final String REGISTER_REQUEST_URL = "http://192.168.0.100/dbscript/register.php";
     private Map<String, String> params;
 
     public RegisterRequest (String fname, String  lname, String  username, String  email, String  password,

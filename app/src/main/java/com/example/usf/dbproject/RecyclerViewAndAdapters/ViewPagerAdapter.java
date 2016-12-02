@@ -1,4 +1,4 @@
-package com.example.usf.dbproject;
+package com.example.usf.dbproject.RecyclerViewAndAdapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

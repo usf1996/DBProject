@@ -1,4 +1,4 @@
-package com.example.usf.dbproject.RecyclerView;
+package com.example.usf.dbproject.RecyclerViewAndAdapters;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;

@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.usf.dbproject.Entities.Movie;
-import com.example.usf.dbproject.Entities.Series;
 import com.example.usf.dbproject.R;
-import com.example.usf.dbproject.RecyclerView.RecyclerViewAdapter;
+import com.example.usf.dbproject.RecyclerViewAndAdapters.RecyclerViewAdapter;
+import com.example.usf.dbproject.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class SearchUserFragment extends Fragment implements SearchView.OnQueryTextListener {
 
-    private List<Object> users;
+    private List<Object> users = new ArrayList<>();
     private RecyclerView rv;
     private RecyclerViewAdapter rvadapter;
 
@@ -48,10 +48,7 @@ public class SearchUserFragment extends Fragment implements SearchView.OnQueryTe
         LinearLayoutManager llm = new LinearLayoutManager(this.getActivity());
         rv.setLayoutManager(llm);
 
-        users = new ArrayList<>();
-        users.add(new Series("User 1", "Genre 1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_camera));
-        users.add(new Series("User 2", "Genre 2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_manage));
-        users.add(new Series("User 3", "Genre 3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consectetur", R.drawable.ic_menu_gallery));
+        users = SearchActivity.movies;
 
         //Create adapter that will be the middle man between the recycler view and the dataset
         rvadapter = new RecyclerViewAdapter(users);
@@ -82,7 +79,7 @@ public class SearchUserFragment extends Fragment implements SearchView.OnQueryTe
         final List<Object> filteredModelList = new ArrayList<>();
         for (Object movie : users) {
             Movie m = (Movie) movie;
-            final String text = m.getMovie_title().toLowerCase();
+            final String text = m.getTitle().toLowerCase();
             if (text.contains(newText)) {
                 filteredModelList.add(movie);
             }

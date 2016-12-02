@@ -2,45 +2,77 @@ package com.example.usf.dbproject.Entities;
 
 
 public class Series {
-    private String series_title, series_genre, series_description;
-    private int series_photoID;
+    private String title, storyline, startDate, endDate, contentRating;
+    private int seriesID;
+    private int companyID;
 
-    public Series(String series_title, String series_genre, String series_description, int series_photoID) {
-        this.series_title = series_title;
-        this.series_genre = series_genre;
-        this.series_description = series_description;
-        this.series_photoID = series_photoID;
+    public int getDuration() {
+        return duration;
     }
 
-    public String getSeries_title() {
-        return series_title;
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
-    public void setSeries_title(String series_title) {
-        this.series_title = series_title;
+    private int duration;
+
+    public Series() {
+
     }
 
-    public String getSeries_genre() {
-        return series_genre;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSeries_genre(String series_genre) {
-        this.series_genre = series_genre;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getSeries_description() {
-        return series_description;
+    public String getStoryline() {
+        return storyline;
     }
 
-    public void setSeries_description(String series_description) {
-        this.series_description = series_description;
+    public void setStoryline(String storyline) {
+        this.storyline = storyline;
     }
 
-    public int getSeries_photoID() {
-        return series_photoID;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setSeries_photoID(int series_photoID) {
-        this.series_photoID = series_photoID;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getContentRating() {
+        return contentRating;
+    }
+
+    public void setContentRating(String contentRating) {
+        this.contentRating = contentRating;
+    }
+
+    public int getSeriesID() {
+        return seriesID;
+    }
+
+    public void setSeriesID(int seriesID) {
+        this.seriesID = seriesID;
+    }
+
+    public int getCompanyID() {
+        return companyID;
+    }
+
+    public void setCompanyID(int companyID) {
+        this.companyID = companyID;
     }
 }
