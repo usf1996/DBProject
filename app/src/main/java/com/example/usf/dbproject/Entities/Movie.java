@@ -5,22 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
-    private int movieID,companyID,duration;
+    private int movieID,duration;
     private String title,releaseDate,storyline,contentRating;
     private List<String> genres;
 
-    public List<String> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<String> genres) {
-        this.genres = genres;
-    }
-
-    public Movie(int movieID, int companyID, String title,
+    public Movie(int movieID, String title,
                  int duration, String releaseDate, String storyline, String contentRating) {
         this.movieID = movieID;
-        this.companyID = companyID;
         this.title = title;
         this.duration = duration;
         this.releaseDate = releaseDate;
@@ -32,20 +23,20 @@ public class Movie {
 
     }
 
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
     public int getMovieID() {
         return movieID;
     }
 
     public void setMovieID(int movieID) {
         this.movieID = movieID;
-    }
-
-    public int getCompanyID() {
-        return companyID;
-    }
-
-    public void setCompanyID(int companyID) {
-        this.companyID = companyID;
     }
 
     public String getTitle() {

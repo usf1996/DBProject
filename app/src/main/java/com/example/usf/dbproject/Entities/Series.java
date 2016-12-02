@@ -1,10 +1,12 @@
 package com.example.usf.dbproject.Entities;
 
 
+import java.util.List;
+
 public class Series {
     private String title, storyline, startDate, endDate, contentRating;
-    private int seriesID;
-    private int companyID;
+    private int seriesID, duration;
+    private List<String> genres;
 
     public int getDuration() {
         return duration;
@@ -14,10 +16,16 @@ public class Series {
         this.duration = duration;
     }
 
-    private int duration;
-
     public Series() {
 
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
     }
 
     public String getTitle() {
@@ -66,13 +74,5 @@ public class Series {
 
     public void setSeriesID(int seriesID) {
         this.seriesID = seriesID;
-    }
-
-    public int getCompanyID() {
-        return companyID;
-    }
-
-    public void setCompanyID(int companyID) {
-        this.companyID = companyID;
     }
 }

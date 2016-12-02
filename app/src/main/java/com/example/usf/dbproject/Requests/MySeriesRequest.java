@@ -10,7 +10,7 @@ import java.util.Map;
 
 
 public class MySeriesRequest extends StringRequest {
-    private static final String SearchSeries_REQUEST_URL = "http://" + MainActivity.IP + "/dbscript/seriesmyprofile.php";
+    private static final String SearchSeries_REQUEST_URL = "http://" + MainActivity.IP + "/dbscript/getmyseries.php";
     private Map<String, String> params;
 
     public MySeriesRequest(Response.Listener<String> listener) {

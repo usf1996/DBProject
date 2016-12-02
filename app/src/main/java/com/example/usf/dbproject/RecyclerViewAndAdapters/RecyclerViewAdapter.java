@@ -72,7 +72,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private void configureSeriesViewHolder(seriesViewHolder svh, int position) {
         Series series = (Series) obj.get(position);
         svh.getTitle().setText(series.getTitle());
-        svh.getGenre().setText("a7be");
+        svh.getGenre().setText(series.getGenres().toString().substring(1, series.getGenres().toString().length()-1));
         svh.getDescription().setText(series.getStoryline());
         svh.getPhotoID().setImageResource(R.drawable.ic_menu_camera);
     }
@@ -82,7 +82,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Movie movie = (Movie) obj.get(position);
 
         mvh.getTitle().setText(movie.getTitle());
-        mvh.getGenre().setText("sharmuta");
+        mvh.getGenre().setText(movie.getGenres().toString().substring(1, movie.getGenres().toString().length()-1));
         mvh.getDescription().setText(movie.getStoryline());
         mvh.getPhotoID().setImageResource(R.drawable.ic_menu_camera);
     }

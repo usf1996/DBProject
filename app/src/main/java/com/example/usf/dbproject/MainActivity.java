@@ -27,6 +27,7 @@ import com.example.usf.dbproject.Login.LoginActivity;
 import com.example.usf.dbproject.Requests.MovieGenreRequest;
 import com.example.usf.dbproject.Requests.MyMovieRequest;
 import com.example.usf.dbproject.Requests.MySeriesRequest;
+import com.example.usf.dbproject.Requests.SeriesGenreRequest;
 import com.example.usf.dbproject.ViewFragments.MovieViewFragment;
 
 import org.json.JSONArray;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity
     public static int ProfileORSearch;
     public static int ProfileORSearch1;
     public static List<JSONArray> genresArr;
-    public static String IP = "192.168.43.180";
+    public static String IP = "192.168.0.102";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +83,13 @@ public class MainActivity extends AppCompatActivity
                             movie = moviesinfo.getJSONObject(i);
                             Movie movieToadd = new Movie(
                                     Integer.parseInt(movie.getString("movieID")),
-                                    Integer.parseInt(movie.getString("companyID")),
                                     movie.getString("title"),
                                     Integer.parseInt(movie.getString("duration")),
-                                    movie.getString("releaseDate"),
+                                    movie.getString("releasedate"),
                                     movie.getString("storyline"),
-                                    movie.getString("contentRating"));
+                                    movie.getString("contentrating"));
                             mymovies.add(movieToadd);
+                            Log.i("123456", "onResponse: " +mymovies.size() );
                         }
                     } else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -122,14 +123,12 @@ public class MainActivity extends AppCompatActivity
                             serie = seriesinfo.getJSONObject(i);
                             Series toAdd = new Series();
                             toAdd.setTitle(serie.getString("title"));
-                            toAdd.setCompanyID(Integer.parseInt(serie.getString("companyID")));
                             toAdd.setSeriesID(Integer.parseInt(serie.getString("seriesID")));
-                            toAdd.setContentRating(serie.getString("contentRating"));
+                            toAdd.setContentRating(serie.getString("contentrating"));
                             toAdd.setStoryline(serie.getString("storyline"));
                             toAdd.setDuration(Integer.parseInt(serie.getString("duration")));
-                            toAdd.setStartDate(serie.getString("startDate"));
-
-                            toAdd.setEndDate("test"); //Ntebeh hay yimkin ta3mol error la2ano null;
+                            toAdd.setStartDate(serie.getString("startdate"));
+                            toAdd.setEndDate(serie.getString("enddate"));
 
                             myseries.add(toAdd);
                         }
@@ -150,7 +149,7 @@ public class MainActivity extends AppCompatActivity
         MySeriesRequest myMovieRequest2 = new MySeriesRequest(responseListener2);
         queue.add(myMovieRequest2);
 
-        /*final Response.Listener<String> responseListener3 = new Response.Listener<String>() {
+        final Response.Listener<String> responseListener3 = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -160,10 +159,10 @@ public class MainActivity extends AppCompatActivity
                         JSONArray moviegenres = jsonResponse.getJSONArray("moviegenre");
                         JSONArray genre;
                         Movie m;
-                        List<String> genres = new ArrayList<>();
-                        Log.i("qqq", "onCreate: " + mymovies.size());
+                        List<String> genres;
                         for(int i=0;i<mymovies.size();i++){
                             m = (Movie) mymovies.get(i);
+                            genres = new ArrayList<>();
                             for(int j=0;j<moviegenres.length();j++){
                                 genre = moviegenres.getJSONArray(j);
                                 if(m.getMovieID() == Integer.parseInt(genre.get(0).toString())){
@@ -171,12 +170,12 @@ public class MainActivity extends AppCompatActivity
                                 }
                             }
                             m.setGenres(genres);
+                            Log.d("123456", "onResponse: " + genres.size());
                         }
-                        Log.i("qqq", "onCreate: " + genres.size());
 
                     }else {
                         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                        builder.setMessage("Loading Genre Failed")
+                        builder.setMessage("Loading My Movies Genre Failed")
                                 .setNegativeButton("Retry", null)
                                 .create()
                                 .show();
@@ -188,10 +187,48 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
-
-
         MovieGenreRequest movieGenreRequest = new MovieGenreRequest(responseListener3);
-        queue.add(movieGenreRequest);*/
+        queue.add(movieGenreRequest);
+
+        final Response.Listener<String> responseListener4 = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if(success){
+                        JSONArray seriesgenres = jsonResponse.getJSONArray("seriesgenre");
+                        JSONArray genre;
+                        Series s;
+                        List<String> genres;
+                        for(int i=0;i<myseries.size();i++){
+                            s = (Series) myseries.get(i);
+                            genres = new ArrayList<>();
+                            for(int j=0;j<seriesgenres.length();j++){
+                                genre = seriesgenres.getJSONArray(j);
+                                if(s.getSeriesID() == Integer.parseInt(genre.get(0).toString())){
+                                    genres.add(genre.get(1).toString());
+                                }
+                            }
+                            s.setGenres(genres);
+                        }
+
+                    }else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setMessage("Loading My Series Genre Failed")
+                                .setNegativeButton("Retry", null)
+                                .create()
+                                .show();
+                    }
+
+                } catch (JSONException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        };
+
+        SeriesGenreRequest seriesGenreRequest = new SeriesGenreRequest(responseListener4);
+        queue.add(seriesGenreRequest);
 
         //Set profile screen as default screen on startup
         if (ProfileORSearch1 == 1) {

@@ -12,7 +12,7 @@ import java.util.Map;
 
 
 public class MyMovieRequest extends StringRequest {
-    private static final String SearchMovie_REQUEST_URL = "http://" + MainActivity.IP + "/dbscript/moviesmyprofile.php";
+    private static final String SearchMovie_REQUEST_URL = "http://" + MainActivity.IP + "/dbscript/getmymovies.php";
     private Map<String, String> params;
 
     public MyMovieRequest(Response.Listener<String> listener) {

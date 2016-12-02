@@ -48,6 +48,7 @@ public class MovieFragment extends Fragment {
         rv.setLayoutManager(llm);
 
         mymovies = MainActivity.mymovies;
+        Log.i("ommak", "onCreateView: " + mymovies.size());
 
         //Create adapter that will be the middle man between the recycler view and the dataset
         rvadapter = new RecyclerViewAdapter(mymovies);
